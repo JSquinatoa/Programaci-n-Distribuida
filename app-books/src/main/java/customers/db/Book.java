@@ -1,28 +1,31 @@
 package customers.db;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
+
+import java.math.BigDecimal;
 
 @Entity
-@Table( name = "books")
+@Table (name = "books")
 @Getter
 @Setter
+@ToString
 public class Book {
 
     @Id
-    @Column(name = "boo_isbn")
     private String isbn;
-    @Column ( name = "boo_price")
-    private double price;
-    @Column ( name = "boo_title")
     private String title;
-    @Version
-    @Column ( name = "boo_version")
+    private BigDecimal price;
     private Integer version;
 
     // Relaciones
-    @OneToOne(mappedBy = "book", cascade = CascadeType.ALL)
+
+    @OneToOne (mappedBy = "book")
     private Inventory inventory;
 
 }

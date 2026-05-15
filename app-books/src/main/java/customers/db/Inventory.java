@@ -1,32 +1,25 @@
 package customers.db;
 
-import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
-@Table( name = "inventories")
+@Table (name = "inventory")
 @Getter
 @Setter
+@ToString //(exclude = {"book"})
 public class Inventory {
 
     @Id
-    @Column(name = "inv_bookIsbr")
-    private String bookIsbr;
-    @Column(name = "inv_solid")
-    private Integer solid;
-    @Column(name = "inv_supplied")
-    private Integer supplied;
-    @Version
-    @Column(name = "inv_version")
-    private Integer version;
-
-    // Relaciones
-    @JsonbTransient
     @OneToOne
-    @JoinColumn(name = "inv_bookIsbr", insertable = false, updatable = false)
+    @JoinColumn (name = "book_isbn")
+    @ToString.Exclude
     private Book book;
 
+    private Integer sold;
+    private Integer supplied;
+    private Integer version;
 
 }
