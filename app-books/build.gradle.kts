@@ -27,6 +27,16 @@ dependencies {
     implementation("io.quarkus:quarkus-hibernate-orm")
     implementation("io.quarkus:quarkus-hibernate-orm-panache")
     implementation("io.quarkus:quarkus-jdbc-postgresql")
+
+    //- service discovery
+
+    //implementation("io.quarkus:quarkus-smallrye-stork")
+
+    implementation("org.modelmapper:modelmapper:3.2.6")
+    implementation("io.quarkus:quarkus-rest-client-jsonb")
+    implementation("io.quarkus:quarkus-rest-client")
+
+
 }
 
 // Soporte para java 25

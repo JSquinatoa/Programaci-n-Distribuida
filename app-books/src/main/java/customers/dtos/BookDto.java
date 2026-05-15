@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,5 +20,7 @@ public class BookDto {
 
     private Integer invetorySold;
     private Integer invetorySupplied;
+
+    public List<AuthorDto> authors;
 
 }
