@@ -1,16 +1,16 @@
 package customers.dtos;
 
-
 import lombok.*;
 
-@Getter@Setter
+@Getter
+@Setter
 @ToString
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class AuthorDto {
 
     private Integer id;
     private String name;
-
 
 }

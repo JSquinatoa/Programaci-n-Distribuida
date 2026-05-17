@@ -27,8 +27,8 @@ public class BookRest {
 
 
     AuthorRestClient client =  RestClientBuilder.newBuilder()
-            .baseUri(String.valueOf(UriBuilder.fromUri("http://127.0.0.1:8070")))
-            .build(AuthorRestClient .class);
+            .baseUri("http://localhost:8080")
+            .build(AuthorRestClient.class);
 
     @GET
     @Path("/{isbn}")
