@@ -32,13 +32,6 @@ public class AuthorRest {
     @Path("/{id}")
     public Response getById (@PathParam("id") Integer id){
 
-//        var obj = authorRepository.findByIdOptional(id);
-//        if(obj.isPresent()){
-//            return Response.ok(obj.get()).build();
-//        } else {
-//            return Response.status(Response.Status.NOT_FOUND).build();
-//        }
-
         return  authorRepository.findByIdOptional(id)
                 .map(it -> {
                     it.setName(it.getName() + " - " + httpPort);
@@ -55,6 +48,7 @@ public class AuthorRest {
 
         return authorRepository.findbyBook(isbn)
                 .stream()
+                .peek(it -> it.setName(it.getName() + " - " + httpPort))
                 .map(it -> AuthorDto.builder()
                         .id(it.getId())
                         .name(it.getName())

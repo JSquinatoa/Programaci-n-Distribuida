@@ -29,12 +29,15 @@ dependencies {
     implementation("io.quarkus:quarkus-jdbc-postgresql")
 
     //- service discovery
+    implementation("io.quarkus:quarkus-smallrye-stork")
+    implementation("io.smallrye.stork:stork-service-discovery-static-list:2.6.3")
 
-    //implementation("io.quarkus:quarkus-smallrye-stork")
 
-    implementation("org.modelmapper:modelmapper:3.2.6")
     implementation("io.quarkus:quarkus-rest-client-jsonb")
     implementation("io.quarkus:quarkus-rest-client")
+
+    implementation("org.modelmapper:modelmapper:3.2.6")
+
 
 
 }
