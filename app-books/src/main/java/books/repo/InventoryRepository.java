@@ -1,6 +1,6 @@
-package customers.repo;
+package books.repo;
 
-import customers.db.Inventory;
+import books.db.Inventory;
 import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;

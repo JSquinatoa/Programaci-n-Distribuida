@@ -3,7 +3,7 @@
   <component name="DiffGenerationConfig">
     <option name="snapshotDb" value="false" />
     <option name="snapshotModelValue" value="prog-distribuida.app-authors.main:prog-distribuida.app-authors.main" />
-    <option name="sourceModelValue" value="prog-distribuida.app-books.main:prog-distribuida.app-books.main" />
+    <option name="sourceModelValue" value="prog-distribuida.app-authors.main:prog-distribuida.app-authors.main" />
     <option name="targetDbValue" value="36fcf01f-df90-44e2-8b44-a673c2ecae85__books20262026_public" />
   </component>
 </project>

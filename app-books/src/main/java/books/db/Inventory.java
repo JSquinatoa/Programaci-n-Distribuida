@@ -1,4 +1,4 @@
-package customers.db;
+package books.db;
 
 import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.*;

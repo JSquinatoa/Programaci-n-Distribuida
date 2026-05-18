@@ -1,4 +1,4 @@
-package customers.dtos;
+package books.dtos;
 
 import lombok.Builder;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package customers.db;
+package books.db;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

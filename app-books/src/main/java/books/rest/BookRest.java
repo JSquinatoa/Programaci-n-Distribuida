@@ -1,9 +1,8 @@
-package customers.rest;
-import customers.clients.AuthorRestClient;
-import customers.db.Book;
-import customers.dtos.AuthorDto;
-import customers.dtos.BookDto;
-import customers.repo.BookRepository;
+package books.rest;
+import books.clients.AuthorRestClient;
+import books.db.Book;
+import books.dtos.BookDto;
+import books.repo.BookRepository;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;

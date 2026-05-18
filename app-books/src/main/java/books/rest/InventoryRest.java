@@ -1,7 +1,7 @@
-package customers.rest;
+package books.rest;
 
-import customers.db.Inventory;
-import customers.repo.InventoryRepository;
+import books.db.Inventory;
+import books.repo.InventoryRepository;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;

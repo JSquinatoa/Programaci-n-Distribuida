@@ -1,10 +1,8 @@
-package customers.clients;
+package books.clients;
 
-import customers.dtos.AuthorDto;
+import books.dtos.AuthorDto;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
-import jakarta.ws.rs.core.UriBuilder;
 
 import java.util.List;
 
