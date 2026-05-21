@@ -38,6 +38,12 @@ dependencies {
     // Source: https://mvnrepository.com/artifact/org.flywaydb/flyway-database-postgresql
     runtimeOnly("org.flywaydb:flyway-database-postgresql:12.5.0")
 
+    // Service discovery
+    implementation("io.quarkus:quarkus-smallrye-stork")
+    implementation("io.smallrye.reactive:smallrye-mutiny-vertx-consul-client")
+
+
+
 }
 
 // Soporte para java 25
