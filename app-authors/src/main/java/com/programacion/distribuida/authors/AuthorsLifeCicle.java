@@ -12,7 +12,6 @@ import jakarta.inject.Inject;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 
 @ApplicationScoped
 public class AuthorsLifeCicle  {
@@ -31,11 +30,7 @@ public class AuthorsLifeCicle  {
     @ConfigProperty(name = "consul.port", defaultValue = "8500")
     Integer consulPort;
 
-    String ipAddress = InetAddress.getLocalHost().getHostAddress();
-    String serviceId = "app-authors-%s:%d".formatted(ipAddress, appPort);
-
-    public AuthorsLifeCicle() throws UnknownHostException {
-    }
+    String serviceId;
 
 
     public void init (@Observes StartupEvent event, Vertx vertx){
@@ -47,6 +42,8 @@ public class AuthorsLifeCicle  {
                     .setPort(consulPort);
 
             ConsulClient client = ConsulClient.create(vertx, options);
+            String ipAddress = InetAddress.getLocalHost().getHostAddress();
+            serviceId = "app-authors-%s:%d".formatted(ipAddress, appPort);
 
             ServiceOptions serviceOptions = new ServiceOptions()
                     .setName("app-authors")
