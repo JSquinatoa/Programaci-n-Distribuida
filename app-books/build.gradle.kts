@@ -30,7 +30,10 @@ dependencies {
 
     //- service discovery
     implementation("io.quarkus:quarkus-smallrye-stork")
-    implementation("io.smallrye.stork:stork-service-discovery-static-list:2.6.3")
+    // dependencia estática
+//    implementation("io.smallrye.stork:stork-service-discovery-static-list")
+    // dependencia dinámica
+    implementation("io.smallrye.stork:stork-service-discovery-consul")
 
 
 
