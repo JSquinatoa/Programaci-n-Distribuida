@@ -25,7 +25,10 @@ public class AuthorRest {
 
     @GET
     public List<Author> getAll(){
-        return authorRepository.listAll();
+        return authorRepository.listAll()
+                .stream()
+                .peek(it -> it.setName(it.getName() + " - " + httpPort))
+                .toList();
     }
 
     @GET

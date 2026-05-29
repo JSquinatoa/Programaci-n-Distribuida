@@ -1,0 +1,23 @@
+http:
+  routers:
+    router-app-authors:
+      entryPoints:
+        - http
+      #rule: "Host(`authors.localhost`)"
+      rule: "PathPrefix(`/authors`)"
+        middlewares
+      service: service-app-authors
+    router-app-books:
+      entryPoints:
+        - http
+      #rule: "Host(`authors.localhost`)"
+      rule: "PathPrefix(`/`)"
+      service: service-app-authors
+  services:
+    service-app-authors:
+      loadBalancer:
+        servers:
+          - url: http://127.0.0.1:8070
+          - url: http://127.0.0.1:8071
+  middlewares:
+    middlewares-authors:
