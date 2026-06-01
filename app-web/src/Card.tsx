@@ -1,8 +1,6 @@
 
 import React from 'react'
 
-// ...existing code...
-
 type Author = {
     id: number;
     name: string;

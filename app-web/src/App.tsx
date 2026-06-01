@@ -12,7 +12,7 @@ interface Book {
     isbn: string;
     price: number;
     title: string;
-    author: Array<Author>;
+    authors: Array<Author>;
 }
 
 function App() {
@@ -60,12 +60,12 @@ function App() {
              }
 
          </div>
-          {
-              authors.map(author =>
-                  <p key={author.id}>{author.id} - {author.name}</p>
+          {/*{*/}
+          {/*    authors.map(author =>*/}
+          {/*        <p key={author.id}>{author.id} - {author.name}</p>*/}
 
-              )
-          }
+          {/*    )*/}
+          {/*}*/}
 
 
 
@@ -80,10 +80,29 @@ function App() {
             <button onClick={handleClickListarBooks}> Consultar </button>
 
             <br />
+            {/*<div className="container">*/}
+            {/*    {*/}
+            {/*        books.map((item, index) => (*/}
+            {/*            <CardBook*/}
+            {/*            key = {index}*/}
+            {/*            book={item}*/}
+            {/*            >*/}
+            {/*        ))*/}
+            {/*    }*/}
+
+            {/*</div>*/}
+
             {
-                books.map(book =>
-                    <p key={book.isbn}>{book.isbn} - {book.price} - {book.title} - {(book.author || []).map(a => a.name).join(', ')}</p>
-                )
+                books.map(book => (
+                    <ul key={book.isbn}>
+                        <li>{book.isbn} - {book.price} - {book.title}</li>
+                        {
+                            book.authors.map(author => (
+                                <li key={author.id}>{author.name}</li>
+                            ))
+                        }
+                    </ul>
+                ))
             }
 
         </section>

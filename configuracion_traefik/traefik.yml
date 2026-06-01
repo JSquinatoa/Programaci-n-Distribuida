@@ -4,17 +4,12 @@ api:
 entryPoints:
   http:
     address: ":80"
-#  https:
-#    address: ".443"
   traefik:
     address: ":8888"
 providers:
-#  file:
-#    filename: app-static.yml
-#    watch: true
   consulCatalog:
     refreshInterval: 5s
-    exposedByDefault: true
+    exposedByDefault: false
     endpoint:
       address: "localhost:8500"
 
