@@ -10,6 +10,7 @@ import jakarta.ws.rs.core.Response;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Path("/authors")
 @Produces(MediaType.APPLICATION_JSON)
@@ -23,6 +24,8 @@ public class AuthorRest {
     @ConfigProperty(name = "quarkus.http.port")
     Integer httpPort;
 
+    AtomicInteger index = new AtomicInteger(1);
+
     @GET
     public List<Author> getAll(){
         return authorRepository.listAll()
@@ -34,6 +37,8 @@ public class AuthorRest {
     @GET
     @Path("/{id}")
     public Response getById (@PathParam("id") Integer id){
+
+
 
         return  authorRepository.findByIdOptional(id)
                 .map(it -> {
@@ -48,6 +53,13 @@ public class AuthorRest {
     @GET
     @Path("/find/{isbn}")
     public List<AuthorDto> findByBook(@PathParam("isbn") String isbn){
+
+        int valor = index.getAndIncrement();
+        if(valor % 5 == 1 || valor % 5 == 2 || valor % 5 == 3) {
+            String msg = String.format("Intento %d, generando error", valor);
+            System.out.println("author**********************************" + msg);
+            throw new RuntimeException(msg);
+        }
 
         return authorRepository.findbyBook(isbn)
                 .stream()
