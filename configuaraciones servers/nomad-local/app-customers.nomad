@@ -24,6 +24,16 @@ job "book-store" {
         #jar_path   = "c:/distribuida20262026/app-customers-0.0.1-SNAPSHOT.jar"
         jar_path    = "local/app-customers-0.0.1-SNAPSHOT.jar"
         jvm_options = ["-Xmx1024m", "-Xms128m"]
+
+
+      args = [
+        "-Xmx1024m",
+        "-Xms128m",
+        "-jar",
+        "local/app-customers-0.0.1-SNAPSHOT.jar"
+      ]
+
+
       }
 
       env {
