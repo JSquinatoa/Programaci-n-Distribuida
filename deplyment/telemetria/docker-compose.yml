@@ -1,4 +1,4 @@
-name: books-app
+name: telemetria
 services:
   db-server:
     image: postgres:17.10-alpine3.24
@@ -10,29 +10,26 @@ services:
       - "C:/distribuida2626/db:/var/lib/postgresql/data"
     ports:
       - 54321:5432
-  consul:
-    image: consul:1.15.4
-    command: |
-      agent -dev
-      -ui
-      -bind 0.0.0.0
-      -client 0.0.0.0
-    ports:
-      - 8500:8500
-  proxy:
-    image: traefik:3.7.5
-    command:
-      - "--api.insecure=true"
-      - "--api.dashboard=true"
-      - "--providers.consulcatalog=true"
-      - "--providers.consulcatalog.endpoint.address=consul:8500"
-      - "--providers.consulcatalog.exposedbydefault=false"
-      - "--providers.consulcatalog.refreshinterval=5s"
-    ports:
-      - 8888:8080
-      - 8080:80
 
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./config:/etc/prometheus
+    ports:
+      - 9090:9090
 
+  # === NUEVO SERVICIO GRAFANA ===
+#  grafana:
+#    image: grafana/grafana:latest
+#    container_name: grafana-app
+#    ports:
+#      - 3000:3000
+#    environment:
+#      - GF_SECURITY_ADMIN_PASSWORD=admin  # Contraseña inicial (puedes cambiarla)
+#    volumes:
+#      - grafana_data:/var/lib/grafana
+#    depends_on:
+#      - prometheus
 
   authors:
     build:
@@ -46,8 +43,11 @@ services:
       QUARKUS_HTTP_PORT: 8080
       CONSUL_HOST: consul
       CONSUL_PORT: 8500
-#    ports:
-#      - 8070:8070
+    ports:
+      - 8070:8080
+    expose:
+      - 8080
+
   books:
     build:
       context: ../../app-books
@@ -60,8 +60,11 @@ services:
       QUARKUS_HTTP_PORT: 8080
       CONSUL_HOST: consul
       CONSUL_PORT: 8500
-#    ports:
-#      - 8080:8080
+    ports:
+      - 8080:8080
+    expose:
+      - 8080
+
   customers:
     build:
       context: ../../app-customers
@@ -71,14 +74,11 @@ services:
       SERVER_PORT: 8080
       SPRING_CLOUD_CONSUL_HOST: consul
       SPRING_CLOUD_CONSUL_PORT: 8500
-#    ports:
-#      - 8090:8090
-  web-app:
-    build:
-      context: ../../app-web
-      dockerfile: Dockerfile
-    container_name: web-app
     ports:
-      - 5173:80
+      - 8090:8080
+    expose:
+      - 8080
+
 volumes:
   postgres_data:
+
