@@ -52,6 +52,7 @@ dependencies {
     implementation("io.quarkus:quarkus-micrometer-registry-prometheus")
 
 
+
 }
 
 // Soporte para java 25

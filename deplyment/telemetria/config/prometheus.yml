@@ -15,8 +15,8 @@ scrape_configs:
     static_configs:
       - targets: ['books:8080']
 
-  - job_name: books-app
-    scrape_interval: 10s
-    metrics_path: /actuator/prometheus
-    static_configs:
-      - targets: [ 'customers:8080' ]
+#  - job_name: customers-app
+#    scrape_interval: 10s
+#    metrics_path: /actuator/prometheus
+#    static_configs:
+#      - targets: [ 'customers:8080' ]

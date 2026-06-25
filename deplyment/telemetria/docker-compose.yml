@@ -15,21 +15,21 @@ services:
     image: prom/prometheus:latest
     volumes:
       - ./config:/etc/prometheus
-    ports:
+    ports: #esto lo pusimos para poder ver desde fuera
       - 9090:9090
 
-  # === NUEVO SERVICIO GRAFANA ===
+#  # === NUEVO SERVICIO GRAFANA ===
 #  grafana:
-#    image: grafana/grafana:latest
-#    container_name: grafana-app
+#    image: grafana/grafana-oss:latest
+##    container_name: grafana-app
 #    ports:
 #      - 3000:3000
 #    environment:
 #      - GF_SECURITY_ADMIN_PASSWORD=admin  # Contraseña inicial (puedes cambiarla)
-#    volumes:
-#      - grafana_data:/var/lib/grafana
-#    depends_on:
-#      - prometheus
+##    volumes:
+##      - grafana_data:/var/lib/grafana
+##    depends_on:
+##      - prometheus
 
   authors:
     build:
@@ -46,7 +46,7 @@ services:
     ports:
       - 8070:8080
     expose:
-      - 8080
+      - 8070
 
   books:
     build:
@@ -65,19 +65,19 @@ services:
     expose:
       - 8080
 
-  customers:
-    build:
-      context: ../../app-customers
-      dockerfile: src/main/docker/Dockerfile.jvm
-    container_name: app-customers
-    environment:
-      SERVER_PORT: 8080
-      SPRING_CLOUD_CONSUL_HOST: consul
-      SPRING_CLOUD_CONSUL_PORT: 8500
-    ports:
-      - 8090:8080
-    expose:
-      - 8080
+#  customers:
+#    build:
+#      context: ../../app-customers
+#      dockerfile: src/main/docker/Dockerfile.jvm
+#    container_name: app-customers
+#    environment:
+#      SERVER_PORT: 8080
+#      SPRING_CLOUD_CONSUL_HOST: consul
+#      SPRING_CLOUD_CONSUL_PORT: 8500
+#    ports:
+#      - 8090:8080
+#    expose:
+#      - 8090
 
 volumes:
   postgres_data:
