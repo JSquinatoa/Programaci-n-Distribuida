@@ -19,17 +19,37 @@ services:
       - 9090:9090
 
 #  # === NUEVO SERVICIO GRAFANA ===
-#  grafana:
-#    image: grafana/grafana-oss:latest
-##    container_name: grafana-app
-#    ports:
-#      - 3000:3000
-#    environment:
-#      - GF_SECURITY_ADMIN_PASSWORD=admin  # Contraseña inicial (puedes cambiarla)
-##    volumes:
-##      - grafana_data:/var/lib/grafana
-##    depends_on:
-##      - prometheus
+  grafana:
+    image: grafana/grafana-oss:latest
+    ports:
+      - 3000:3000
+
+  proxy:
+    image: traefik:3.7.5
+    command: |
+      --api.insecure=true
+      --api.dashboard=true
+      --entryPoints.http.address=":80"
+      --entryPoints.traefik.address=":8080"
+      --entryPoints.metrics.address=":8082"
+      --providers.consulCatalog
+      --providers.consulCatalog.endpoint.address=consul:8500
+      --providers.consulCatalog.exposedByDefault=false
+      --providers.consulCatalog.refreshInterval=5s
+      --metrics.prometheus=true
+      --metrics.prometheus.entryPoint=metrics
+
+    ports:
+      - 8888:8080
+      - 8080:80
+      - 8082:8082
+
+  postgresql-exporter:
+    image: prometheuscommunity/postgres-exporter
+    environment:
+      DATA_SOURCE_URI: "db-server:5432/books20262026?sslmode=disable"
+      DATA_SOURCE_USER: postgres
+      DATA_SOURCE_PASS: labcom,2015
 
   authors:
     build:
@@ -45,8 +65,8 @@ services:
       CONSUL_PORT: 8500
     ports:
       - 8070:8080
-    expose:
-      - 8070
+#    expose:
+#      - 8070
 
   books:
     build:
@@ -61,9 +81,9 @@ services:
       CONSUL_HOST: consul
       CONSUL_PORT: 8500
     ports:
-      - 8080:8080
-    expose:
-      - 8080
+      - 8060:8080
+#    expose:
+#      - 8080
 
 #  customers:
 #    build:
